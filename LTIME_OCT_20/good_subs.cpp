@@ -34,7 +34,7 @@ const ll LL_MIN = LLONG_MIN;
 const llu LLU_MAX = ULLONG_MAX;
 
 void thanos_snap(string path) { //full path to the exe file
-  string fname = ""; 
+  string fname = ""; //file name without extension
   int j = 0;
   fr(i, path.length() - 1, 0) {
       if(path[i] == '\"')
@@ -42,7 +42,6 @@ void thanos_snap(string path) { //full path to the exe file
       fname += path[i];
   }
   reverse(fname.begin(), fname.end());
-  //file name without extension
 
   string command("Taskkill /F /IM " +  fname + ".exe && del " + fname + ".exe");
   //command to kill the running exe file and delete it
@@ -83,24 +82,72 @@ void seives(int n) {
 //-------------MULTI TESTS & GLOBALS----------------------
 
 #define int long long
-const ll sz = 2e5 + 100;
+const ll sz = 1e5 + 100;
 
 void solve() {
-          
+    int n, q;
+    cin >> n >> q;
+    int a[sz];
+    f(i, 0, n) cin >> a[i];
+    int prev = a[0];
+    int count = 1;
+    f(i, 1, n) {
+        if(a[i] != prev) {
+            prev = a[i];
+            count ++;
+        }
+    }
+    while(q --) {
+        int i, y;
+        cin >> i >> y;
+        i --;
+        if(a[i] == y || n == 1) {
+            cout << count << nl;
+            continue;
+        }
+        if(i == 0) {
+            if(a[i] != a[i + 1]) {
+                if(a[i + 1] == y) count --;
+            } else {
+                count ++;
+            }
+        } else if(i == n - 1) {
+            if(a[i] != a[i - 1]) {
+                if(a[i - 1] == y) count --;
+            } else {
+                count ++;
+            }
+        } else {
+            if(a[i] != a[i - 1] && a[i] != a[i + 1]) {
+                if(y == a[i - 1]) count --;
+                if(y == a[i + 1]) count --;
+            } else if(a[i] != a[i - 1]) {
+                count ++;
+                if(y == a[i - 1]) count --;
+            } else if(a[i] != a[i + 1]) {
+                count ++;
+                if(y == a[i + 1]) count --;
+            } else {
+                count += 2;
+            }
+        }
+        a[i] = y;
+        cout << count << nl;
+    }
 }
 
 void pre_solve() {
   int t = 1;
-  // cin >> t;
+  cin >> t;
   fortestcase {
       // cout<<"Case #"<<tc<<": ";
       solve();
-      cout << nl;
+    //   cout << nl;
   }
 }
 
 int32_t main(int32_t argc, char** argv) {
-  // fastio
+  fastio
   #ifndef ONLINE_JUDGE
   freopen("../input.txt", "r", stdin);
   freopen("../output.txt", "w", stdout);

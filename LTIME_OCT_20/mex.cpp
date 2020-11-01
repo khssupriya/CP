@@ -34,7 +34,7 @@ const ll LL_MIN = LLONG_MIN;
 const llu LLU_MAX = ULLONG_MAX;
 
 void thanos_snap(string path) { //full path to the exe file
-  string fname = ""; 
+  string fname = ""; //file name without extension
   int j = 0;
   fr(i, path.length() - 1, 0) {
       if(path[i] == '\"')
@@ -42,7 +42,6 @@ void thanos_snap(string path) { //full path to the exe file
       fname += path[i];
   }
   reverse(fname.begin(), fname.end());
-  //file name without extension
 
   string command("Taskkill /F /IM " +  fname + ".exe && del " + fname + ".exe");
   //command to kill the running exe file and delete it
@@ -83,15 +82,48 @@ void seives(int n) {
 //-------------MULTI TESTS & GLOBALS----------------------
 
 #define int long long
-const ll sz = 2e5 + 100;
+const ll sz = 1e5 + 100;
+
+vector<vector<int>>adj;
+
+int dp[sz];
+
+int dfs1(int u) {
+   int c = 0;
+   for(auto x : adj[u]) {
+    //   if(u == 1) {cout << dfs1(x) << " "; }
+       c += dfs1(x);
+   } 
+   return dp[u] = c + 1;
+}
+
+int dfs2(int u) {
+   int mx = 0;
+   for(auto x : adj[u]) {
+       umax(mx, dfs2(x));
+   } 
+   return dp[u] + mx;
+}
 
 void solve() {
-          
+    int n;
+    cin >> n;
+    adj.clear();
+    adj.resize(n + 1);
+    f(i, 0, sz)dp[i] = -1;
+    f(i, 0, n - 1) {
+        int x;
+        cin >> x;
+        adj[x].pb(i + 2);
+    }
+    dfs1(1);
+    // f(i, 1, n + 1)cout << dp[i] << " ";
+    cout << dfs2(1);
 }
 
 void pre_solve() {
   int t = 1;
-  // cin >> t;
+  cin >> t;
   fortestcase {
       // cout<<"Case #"<<tc<<": ";
       solve();
@@ -100,7 +132,7 @@ void pre_solve() {
 }
 
 int32_t main(int32_t argc, char** argv) {
-  // fastio
+//   fastio
   #ifndef ONLINE_JUDGE
   freopen("../input.txt", "r", stdin);
   freopen("../output.txt", "w", stdout);

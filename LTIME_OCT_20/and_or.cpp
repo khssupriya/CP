@@ -34,7 +34,7 @@ const ll LL_MIN = LLONG_MIN;
 const llu LLU_MAX = ULLONG_MAX;
 
 void thanos_snap(string path) { //full path to the exe file
-  string fname = ""; 
+  string fname = ""; //file name without extension
   int j = 0;
   fr(i, path.length() - 1, 0) {
       if(path[i] == '\"')
@@ -42,7 +42,6 @@ void thanos_snap(string path) { //full path to the exe file
       fname += path[i];
   }
   reverse(fname.begin(), fname.end());
-  //file name without extension
 
   string command("Taskkill /F /IM " +  fname + ".exe && del " + fname + ".exe");
   //command to kill the running exe file and delete it
@@ -86,12 +85,14 @@ void seives(int n) {
 const ll sz = 2e5 + 100;
 
 void solve() {
-          
+    int x;
+    cin >> x;
+    cout << 0 << " " << x;
 }
 
 void pre_solve() {
   int t = 1;
-  // cin >> t;
+  cin >> t;
   fortestcase {
       // cout<<"Case #"<<tc<<": ";
       solve();
@@ -100,7 +101,7 @@ void pre_solve() {
 }
 
 int32_t main(int32_t argc, char** argv) {
-  // fastio
+  fastio
   #ifndef ONLINE_JUDGE
   freopen("../input.txt", "r", stdin);
   freopen("../output.txt", "w", stdout);
