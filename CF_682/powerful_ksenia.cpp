@@ -82,10 +82,69 @@ void seives(int n) {
 //-------------MULTI TESTS & GLOBALS----------------------
 
 #define int long long
-const ll sz = 2e5 + 100;
+const ll sz = 1e5 + 100;
 
 void solve() {
-          
+    int n;
+    cin >> n;
+    int a[sz];
+    f(i, 0, n) cin >> a[i];
+    if(n & 1) {
+        cout << "YES" << nl;
+        cout << 2 * ((n - 3) / 2 + 1) << nl;
+        for(int i = 0; i <= n - 3; i += 2) {
+            cout << i + 1 << " " << i + 2 << " " << n << nl;
+        }
+        for(int i = 0; i <= n - 3; i += 2) {
+            cout << i + 1 << " " << i + 2 << " " << n << nl;
+        }
+        return;
+    }
+    int tot = 0;
+    f(i, 0, n) tot ^= a[i];
+    if(tot != 0) {
+        cout << "NO";
+        return;
+    }
+    // cout << "YES" << nl;
+    // cout << n - 2 << nl;
+    // cout << "1 2 3" << nl;
+    // for (int i = 3; i <= n - 2; i += 2){
+    //     cout << i << " " << i + 1 << " " << i + 2 << nl;
+    //     cout << 1 << " " << i << " " << i + 1 << nl;
+    // }
+    // cout << "1 " << n - 1 << " " << n << endl;
+    // if(a[n - 1] != a[n - 2]) {
+    //     int k = a[n - 2];
+    //     int f = -1;
+    //     f(i, 0, n) if(a[i] == k && i != n - 2) {f = i; break;}
+    //     if(f == -1) {
+    //         cout << "NO" << nl;
+    //         return;
+    //     }
+    //     cout << f << " " << n - 1 << " " << n << nl; 
+    // }
+    // cout << "YES" << nl;
+    cout << 2 * ((n - 3) / 2 + 1) + 1 << nl;
+    for(int i = 0; i <= n - 3; i += 2) {
+            cout << i + 1 << " " << i + 2 << " " << n << nl;
+    }
+    for(int i = 0; i <= n - 3; i += 2) {
+            cout << i + 1 << " " << i + 2 << " " << n << nl;
+    }
+    cout << n - 2 << " " << n - 1 << " " << n << nl;
+    // if(n % 3 == 1) {
+    //     cout << "NO";
+    //     return;
+    // }
+    // cout << "YES" << nl;
+    // cout << 2 * ((n - 3) / 2 + 1) + (n % 3 == 1)<< nl;
+    // if(n % 3 == 2) {
+    //     for(int i = 0; i <= n - 3; i += 2) {
+    //         cout << i + 1 << " " << i + 2 << " " << n << nl;
+    //     }
+    // }
+      
 }
 
 void pre_solve() {
@@ -94,12 +153,12 @@ void pre_solve() {
     fortestcase {
         // cout<<"Case #"<<tc<<": ";
         solve();
-        cout << nl;
+        // cout << nl;
     }
 }
 
 int32_t main(int32_t argc, char** argv) {
-    fastio
+    //fastio
     #ifndef ONLINE_JUDGE
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);

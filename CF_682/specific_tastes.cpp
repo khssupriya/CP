@@ -85,12 +85,16 @@ void seives(int n) {
 const ll sz = 2e5 + 100;
 
 void solve() {
-          
+    int n;
+    cin >> n;
+    f(i, 0, n) {
+        cout << 1 << " ";
+    }
 }
 
 void pre_solve() {
     int t = 1;
-    // cin >> t;
+    cin >> t;
     fortestcase {
         // cout<<"Case #"<<tc<<": ";
         solve();
@@ -99,7 +103,7 @@ void pre_solve() {
 }
 
 int32_t main(int32_t argc, char** argv) {
-    fastio
+    // fastio
     #ifndef ONLINE_JUDGE
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);

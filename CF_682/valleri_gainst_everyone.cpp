@@ -85,12 +85,33 @@ void seives(int n) {
 const ll sz = 2e5 + 100;
 
 void solve() {
-          
+    int n;
+    cin >> n;
+    int b[1001];
+    f(i, 0, n) cin >> b[i];
+    omi c;
+    f(i, 0, n)c[b[i]] ++;
+    int mx = 0;
+    f(i, 0, n) mx = max(mx, b[i]);
+    int f = 0;
+    int pos = -1;
+    for(auto x : c) {
+        if(x.second > 1) {
+            f = 1;
+            break;
+        }     
+    }
+    if(f) {
+        cout << "YES";
+    }else {
+        cout << "NO";
+    }
+
 }
 
 void pre_solve() {
     int t = 1;
-    // cin >> t;
+    cin >> t;
     fortestcase {
         // cout<<"Case #"<<tc<<": ";
         solve();
