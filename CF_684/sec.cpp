@@ -85,7 +85,35 @@ void seives(int n) {
 const ll sz = 2e5 + 100;
 
 void solve() {
-    
+    int n, k;
+    cin >> n >> k;
+    int a[sz];
+    f(i, 0, n * k) cin >> a[i];
+    sort(a, a + n * k);
+    // if(n / k <= 2) {
+    //     int sum = 0;
+    //     cout << "hello";
+    //     for(int i = 0; i < n * k; i += k) {
+    //         sum += a[i];
+    //     }
+    //     cout << sum;
+    //     return;
+    // }
+    // int sum = 0;
+    // f(i, (n / 2) * k - 1, (n / 2) * k + k - 1) {
+    //     sum += a[i];
+    // }     
+    // cout << sum;
+    int sum = 0;
+    int c = 0;
+    for(int i = n * k - ceil(n / 2); i >= 0; i -= ceil(n / 2) + 1) {
+        sum += a[i - 1];
+        // cout << a[i - 1] << " ";
+        c ++;
+        if(c == k) break;
+    }
+    cout << sum;
+    return;
 }
 
 void pre_solve() {
@@ -99,7 +127,7 @@ void pre_solve() {
 }
 
 int32_t main(int32_t argc, char** argv) {
-    fastio
+    //fastio
     #ifndef ONLINE_JUDGE
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);
@@ -107,11 +135,11 @@ int32_t main(int32_t argc, char** argv) {
 
     pre_solve();
 
-    // #ifndef ONLINE_JUDGE
-    // freopen("../out.txt", "w", stdout);
-    // //out.txt is where we get the log: SUCCESSFULLY deleted xyz.exe
-    // thanos_snap(argv[0]);
-    // #endif
+    #ifndef ONLINE_JUDGE
+    freopen("../out.txt", "w", stdout);
+    //out.txt is where we get the log: SUCCESSFULLY deleted xyz.exe
+    thanos_snap(argv[0]);
+    #endif
 
     return 0;
 }

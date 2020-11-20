@@ -85,7 +85,28 @@ void seives(int n) {
 const ll sz = 2e5 + 100;
 
 void solve() {
-    
+    int n, c0, c1, h;
+    cin >> n >> c0 >> c1 >> h;
+    string s;
+    cin >> s;
+    if(c0 + h < c1) {
+        int c = 0;
+        f(i, 0, n) if(s[i] == '1') c++;
+        cout << c * h + n * c0;
+        return;
+    }
+    if(c1 + h < c0) {
+        int c = 0;
+        f(i, 0, n) if(s[i] == '0') c++;
+        cout << c * h + n * c1;
+        return;
+    }
+    int c = 0;
+    f(i, 0, n) {
+        if(s[i] == '1') c += c1;
+        else c += c0;
+    }
+    cout << c;
 }
 
 void pre_solve() {
@@ -99,7 +120,7 @@ void pre_solve() {
 }
 
 int32_t main(int32_t argc, char** argv) {
-    fastio
+    //fastio
     #ifndef ONLINE_JUDGE
     freopen("../input.txt", "r", stdin);
     freopen("../output.txt", "w", stdout);
