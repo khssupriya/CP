@@ -15,12 +15,34 @@ const ll mod2 = 998244353;
 const ll sz = 2e5 + 100;
 
 void solve() {
-    
+    string a, b;
+    cin >> a >> b;
+    int n = a.length();
+    int c = 0;
+    int f = 0;
+    for(int i = 0; i < n ; i += 2) {
+        if(a[i] == b[i] && f == 1) {
+            c ++;
+            f = 0;
+        }
+        if(a[i] != b[i]) f = 1;
+    }
+    if(f) c ++;
+    f = 0;
+    for(int i = 1; i < n ; i += 2) {
+        if(a[i] == b[i] && f == 1) {
+            c ++;
+            f = 0;
+        }
+        if(a[i] != b[i]) f = 1;
+    }
+    if(f) c ++;
+    cout << c;    
 }
 
 void pre_solve() {
     int t = 1;
-    // cin >> t;
+    cin >> t;
     for(int tc = 1; tc <= t; ++ tc) {
         // cout<<"Case #"<<tc<<": ";
         solve();

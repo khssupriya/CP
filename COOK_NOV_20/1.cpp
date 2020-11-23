@@ -15,7 +15,20 @@ const ll mod2 = 998244353;
 const ll sz = 2e5 + 100;
 
 void solve() {
-    
+    int n, m, k;
+    cin >> n >> m >> k;
+    int c = 0;
+    while(n --) {
+        int sum = 0;
+        for(int i = 0; i < k; i ++) {
+            int x;
+            cin >> x;
+            sum += x;
+        }
+        int q; cin >> q;
+        if(sum >= m && q <= 10) c ++;
+    }
+    cout << c;
 }
 
 void pre_solve() {

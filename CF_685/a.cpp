@@ -15,12 +15,30 @@ const ll mod2 = 998244353;
 const ll sz = 2e5 + 100;
 
 void solve() {
-    
+    int n;
+    cin >> n;
+    if(n == 1) {
+        cout << 0;
+        return;
+    }
+    if(n == 2) {
+        cout << 1;
+        return;
+    }
+    if(n == 3) {
+        cout << 2;
+        return;
+    }
+    if(n&1) {
+        cout << 3;
+    } else {
+        cout << 2;
+    }
 }
 
 void pre_solve() {
     int t = 1;
-    // cin >> t;
+    cin >> t;
     for(int tc = 1; tc <= t; ++ tc) {
         // cout<<"Case #"<<tc<<": ";
         solve();
